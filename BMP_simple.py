@@ -2,8 +2,8 @@
 import time
 import lib.BMP280 as bmp280  # arxiu BMP280 que hem creat dins la carpeta lib
 
-# configuració:
-sensor = bmp280.BMP280()  # definició de l'objecte BMP280 amb el nom sensor
+# configuracio:
+sensor = bmp280.BMP280()  # definicio de l'objecte BMP280 amb el nom sensor
 
 try:    # execució en condicions normals
   while True:
@@ -12,5 +12,5 @@ try:    # execució en condicions normals
 	print ("temperatura: %s C, pressio: %s hPa" % (temperatura, pressio))  # imprimeix 
 	time.sleep(1)	# interval actualitzacio de dades 1s
 
-except:    # quan es produeixi una excepció, com Ctrl+C, l’execució sortirà del bucle anterior
+except:    # quan es produeixi una excepcio, com Ctrl+C, l’execucio sortira del bucle anterior
   print ("execucio interrompuda")
