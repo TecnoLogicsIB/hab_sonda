@@ -5,7 +5,7 @@ import thingspeak
 
 logger = logging.getLogger('server_logger')
 logger.setLevel(logging.INFO)
-fh = logging.FileHandler('logs/dbs.log')    
+fh = logging.FileHandler('logs/dsb.log')    
 fh.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s|%(message)s|', datefmt='%Y-%m-%d %H:%M:%S')
 fh.setFormatter(formatter)
