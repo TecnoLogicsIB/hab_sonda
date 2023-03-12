@@ -31,21 +31,18 @@ loggerLog.info("[dallasService] tiempoMuestreoDallas: " + str(tiempoMuestreoDall
 
 if act == 1:
 
-	while True:
+    while True:
 
-		try:
-                        #INICIO: Espacio para recuperar los datos del sensor a partir de la libreria
-                        #Escritura de datos en el archivo de datos del sensor. Todo lo que se escriba aqui sera lo que potencialmente se acabe enviando por telemetria.
-			for sensor in W1ThermSensor.get_available_sensors():
-         dallasTemp.append(round(sensor.get_temperature(),2))  # lectura arrodonida amb 2 decimals
-      logger.info (str(dallasTemp[0]) + '|' + str(dallasTemp[1]))
-      dallasTemp.clear()
-                        #FINAL: Espacio para recuperar los datos del sensor a partir de la libreria
-			time.sleep(tiempoMuestreoDallas)
+        try:
+            for sensor in W1ThermSensor.get_available_sensors():
+                dallasTemp.append(round(sensor.get_temperature(),2))  # lectura arrodonida amb 2 decimals
+            logger.info (str(dallasTemp[0]) + '|' + str(dallasTemp[1]))
+            dallasTemp.clear()
+            time.sleep(tiempoMuestreoDallas)
 
-		except Exception as e:
-			loggerLog.error("[dallasService] Exception: " + str(e))
-			loggerLog.error("[dallasService] Se ha producido un error, se sigue iterando...")
-			time.sleep(5)
+        except Exception as e:
+            loggerLog.error("[dallasService] Exception: " + str(e))
+            loggerLog.error("[dallasService] Se ha producido un error, se sigue iterando...")
+            time.sleep(5)
 else:
-	loggerLog.warn("[dallasService] El sensor no ha sido activado!")
+    loggerLog.warn("[dallasService] El sensor no ha sido activado!")
