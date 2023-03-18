@@ -46,7 +46,7 @@ if act == 1:
             gy = gyro_data["y"]
             gz = gyro_data["z"]
 
-            logger.info(str(round(ax,4)) + "|" + str(round(ay,4)) + "|" + str(round(az,4)) + "|" + str(round(gx,4)) + "|" + str(round(gy,4)) + "|" + str(round(gz,4)) + "|" + str(round(temp_data,2)));
+            logger.info(str(round(ax,4)) + "|" + str(round(ay,4)) + "|" + str(round(az,4)) + "|" + str(round(gx,4)) + "|" + str(round(gy,4)) + "|" + str(round(gz,4)) + "|" + str(round(temp_data,2)))
 
 	    #print "acel_data: " + "x:" + str(ax) + "y:" + str(ay) + "z:" + str(az)
 	    #print "gyro_data: " + "x:" + str(gx) + "y:" + str(gy) + "z:" + str(gz)
