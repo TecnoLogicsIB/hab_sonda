@@ -1,9 +1,3 @@
-#################################################################################
-#               Proyecto:   dallasService                                       #
-#               Autor: Oscar Loras Delgado                                      #
-#                                                                               #
-#################################################################################
-
 import time
 import logging
 from w1thermsensor import W1ThermSensor
@@ -28,6 +22,7 @@ inf.setFormatter(formatterInformer)
 loggerLog.addHandler(inf)
 
 sensor = W1ThermSensor()
+dallasTemp = []
 
 act = ConfigHelper.isDallasActivo()
 tiempoMuestreoDallas = ConfigHelper.getTiempoMuestreoDallas()
@@ -39,17 +34,15 @@ if act == 1:
     while True:
 
         try:
-            #INICIO: Espacio para recuperar los datos del sensor a partir de la libreria
-	    #loggerLog.info("[dallasService] inicio")
-	    dallasTemp = sensor.get_temperature()
-            #Escritura de datos en el archivo de datos del sensor. Todo lo que se escriba aqui sera lo que potencialmente se acabe enviando por telemetria.
-            logger.info(str(round(dallasTemp,2)))
-            #FINAL: Espacio para recuperar los datos del sensor a partir de la libreria
+            for sensor in W1ThermSensor.get_available_sensors():
+                dallasTemp.append(round(sensor.get_temperature(),2))  # lectura arrodonida amb 2 decimals
+            logger.info (str(dallasTemp[0]) + '|' + str(dallasTemp[1]))
+            dallasTemp.clear()
             time.sleep(tiempoMuestreoDallas)
 
         except Exception as e:
-	    loggerLog.error("[dallasService] Exception: " + str(e))
-	    loggerLog.error("[dallasService] Se ha producido un error, se sigue iterando...")
-	    time.sleep(5)
+            loggerLog.error("[dallasService] Exception: " + str(e))
+            loggerLog.error("[dallasService] Se ha producido un error, se sigue iterando...")
+            time.sleep(5)
 else:
     loggerLog.warn("[dallasService] El sensor no ha sido activado!")
